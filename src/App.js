@@ -1,23 +1,37 @@
-import logo from './logo.svg';
 import './App.css';
+import { useEffect, useState } from "react";
 
 function App() {
+  const [city, setCity] = useState("");
+  const [currentWeather, setCurrentWeather] = useState("");
+
+  function handleCity(event) {  
+    setCity(event.target.value);
+  }
+
+  useEffect(() => {
+    const fetchApi = async () => {
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=f321285891103fb423e8a01bc3d728e6`;
+      const response = await fetch(url);
+      const weather = await response.json();
+      setCurrentWeather(weather);
+    }
+    fetchApi();
+  }, [city])
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input
+        type="text"
+        onChange={handleCity}
+        placeholder="Search Weather"
+        value={city} />
+      <div> {city} </div>
+
+      {!currentWeather.main ? (<div></div>) : (
+        <div> {currentWeather.main.temp} {currentWeather.weather[0].description}</div>)}
+
     </div>
   );
 }
