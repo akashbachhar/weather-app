@@ -5,7 +5,7 @@ function App() {
   const [city, setCity] = useState("");
   const [currentWeather, setCurrentWeather] = useState("");
 
-  function handleCity(event) {  
+  function handleCity(event) {
     setCity(event.target.value);
   }
 
@@ -30,7 +30,11 @@ function App() {
       <div> {city} </div>
 
       {!currentWeather.main ? (<div></div>) : (
-        <div> {currentWeather.main.temp} {currentWeather.weather[0].description}</div>)}
+        <div>
+          <p> {currentWeather.main.temp} </p>
+          <p>{currentWeather.weather[0].description}</p>
+          <img src={'https://openweathermap.org/img/wn/' + currentWeather.weather[0].icon + '@2x.png'} alt="icon"></img>
+        </div>)}
 
     </div>
   );

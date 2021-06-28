@@ -1,3 +1,9 @@
+html{
+  background-color: black;
+  color: #fff;
+  font-size: 2rem;
+}
+
 .App {
   text-align: center;
 }
