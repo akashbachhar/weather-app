@@ -1,5 +1,6 @@
-import './App.css';
 import { useEffect, useState } from "react";
+import './App.css';
+
 
 function App() {
   const [city, setCity] = useState("");
