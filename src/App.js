@@ -11,8 +11,8 @@ function App() {
   }
 
   useEffect(() => {
-    const fetchApi = async () => {
-      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=`;
+    const fetchApi = async () => { 
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.REACT_APP_WEATHER_API}`;
       const response = await fetch(url);
       const weather = await response.json();
       setCurrentWeather(weather);
